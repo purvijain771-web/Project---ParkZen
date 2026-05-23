@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Parkzen</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            window.location.href = "home.html";
+        }
+    </script>
+</head>
+
+<body>
+
+<h1 class="title"> Parkzen - Smart Parking Managment</h1>
+
+<div class="top-section">
+
+    <!-- FORM -->
+    <div class="form-section">
+        <h2>Registration Form</h2>
+
+        <input type="text" id="ownerName" placeholder="Owner Name">
+        <input type="text" id="carNumber" placeholder="Vehicle Number">
+        <input type="text" id="vehicleName" placeholder="Vehicle Name">
+
+        <select id="vehicleType">
+            <option value="">Select Vehicle Type</option>
+            <option value="Car">Car</option>
+            <option value="Bike">Bike</option>
+            <option value="Scooty">Scooty</option>
+        </select>
+
+        <select id="payment">
+            <option value="">Payment Mode</option>
+            <option value="Cash">Cash</option>
+            <option value="Online">Online</option>
+        </select>
+
+        <input type="text" id="price" placeholder="Price" readonly>
+
+        <button onclick="parkCar()">Park</button>
+
+        <!-- QR -->
+        <div id="qrBox" style="display:none; text-align:center;">
+            <h3>Scan to Pay</h3>
+            <img id="qrImage"src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ParkzenPayment"
+               width="150">
+        </div>
+
+    </div>
+
+    <!-- RIGHT BOX -->
+    <div class="slot-section">
+        <h3>Parking Space Information</h3>
+
+        <p>Total Space: 50</p>
+        <p>Available Space: <span id="available">50</span></p>
+        <p>Occupied Space: <span id="occupied">0</span></p>
+
+        <p>Total Revenue: ₹<span id="revenue">0</span></p>
+
+        <!-- AI FEATURES -->
+        <p>Best Slot: <span id="bestSlot">-</span></p>
+        <p>Prediction: <span id="prediction">-</span></p>
+        <p>Status: <span id="status">-</span></p>
+
+        <button onclick="resetRevenue()">Reset Revenue</button>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+</div>
+
+<input type="text" id="search" placeholder="🔍 Search Vehicle" onkeyup="searchVehicle()">
+
+<div class="table-section">
+    <h2>Vehicle Records</h2>
+
+    <!-- FILTER -->
+    <div style="text-align:center; margin-bottom:10px;">
+        <button onclick="filterData('today')">Today</button>
+        <button onclick="filterData('yesterday')">Yesterday</button>
+        <button onclick="filterData('all')">All Records</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>S.NO</th>
+                <th>Owner</th>
+                <th>Vehicle No</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Payment</th>
+                <th>Price</th>
+                <th>Entry Time</th>
+                <th>Exit Time</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="vehicleTable"></tbody>
+    </table>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
