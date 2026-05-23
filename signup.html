@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background-image: url('https://circontrol.com/wp-content/uploads/2023/10/180125-Circontrol-BAIXA-80-1.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .signup-box {
+            background: rgba(0,0,0,0.8);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            width: 320px;
+        }
+
+        .signup-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            box-sizing: border-box;
+        }
+
+        .signup-box button {
+            width: 100%;
+            padding: 12px;
+            background: #2a5298;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .signup-box button:hover { background: #1e3c72; }
+    </style>
+</head>
+
+<body>
+
+<div class="signup-box">
+    <h2>Sign Up</h2>
+
+    <input type="text" id="newUsername" placeholder="Create Username">
+    <input type="password" id="newPassword" placeholder="Create Password">
+
+    <button onclick="signup()">Sign Up</button>
+</div>
+
+<script>
+async function signup() {
+    let user = document.getElementById("newUsername").value;
+    let pass = document.getElementById("newPassword").value;
+
+    if (!user || !pass) {
+        alert("Fill all fields");
+        return;
+    }
+
+    localStorage.setItem("username", user);
+    localStorage.setItem("password", pass);
+
+    try {
+        let res = await fetch("http://localhost:5000/signup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username: user, password: pass })
+        });
+
+        let data = await res.json();
+        alert("Signup successful!");
+        window.location.href = "login.html";
+
+    } catch (err) {
+        alert("Error connecting to server");
+    }
+}
+
+document.getElementById("newUsername").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") document.getElementById("newPassword").focus();
+});
+
+document.getElementById("newPassword").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") signup();
+});
+</script>
+
+</body>
+</html>
