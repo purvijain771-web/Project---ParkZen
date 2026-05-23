@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Parkzen Home</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        html { scroll-behavior: smooth; }
+
+        body {
+           margin: 0;
+           font-family: 'Segoe UI', sans-serif;
+           background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                       url('https://thumbs.dreamstime.com/b/generative-ai-modern-car-dealership-new-white-sedans-aligned-indoor-parking-garage-automotive-industry-business-generative-ai-403474212.jpg?w=768');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            color: white;
+        }
+
+        .nav-links span {
+            margin: 0 15px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .nav-links span:hover { border-bottom: 2px solid white; }
+
+        .hero {
+            width: 70%;
+            margin-left: 80px;
+            margin-top: 60px;
+            color: white;
+        }
+
+        .hero h1 { font-size: 42px; margin-bottom: 15px; }
+
+        .tags span {
+            display: inline-block;
+            padding: 6px 12px;
+            border: 1px solid white;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 13px;
+        }
+
+        .hero p {
+            line-height: 1.7;
+            font-size: 16px;
+            margin-top: 15px;
+            max-width: 600px;
+        }
+
+        .buttons { margin-top: 25px; }
+
+        .buttons button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            background: #2a5298;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .buttons button:hover { background: #1e3c72; transform: scale(1.05); }
+
+        .section {
+            margin-top: 80px;
+            padding-left: 80px;
+            color: white;
+        }
+
+        .section h2 { margin-bottom: 20px; }
+        .section p { margin: 6px 0; }
+
+        .contact-box input,
+        .contact-box textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .contact-box button {
+            padding: 10px;
+            width: 100%;
+            background: #2a5298;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .contact-box button:hover { background: #1e3c72; }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2> Parkzen</h2>
+    <div class="nav-links">
+        <span onclick="scrollToSection('about')">About</span>
+        <span onclick="scrollToSection('services')">Services</span>
+        <span onclick="scrollToSection('features')">Features</span>
+        <span onclick="scrollToSection('team')">Team</span>
+        <span onclick="scrollToSection('career')">Career</span>
+        <span onclick="scrollToSection('contact')">Contact</span>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<div class="hero" id="about">
+    <h1><b>About Us</b></h1>
+    <div class="tags">
+        <span>Smart Parking</span>
+        <span>Real-Time Tracking</span>
+        <span>QR Payment</span>
+        <span>AI Prediction</span>
+    </div>
+    <p>
+        Parkzen is a smart parking management system designed to simplify
+        vehicle parking operations. It allows users to register vehicles,
+        track entry and exit in real-time, and monitor parking availability efficiently.
+    </p>
+    <p>
+        With QR-based payments, smart slot suggestions, and live status updates,
+        Parkzen reduces congestion and makes parking faster, smarter, and more efficient.
+    </p>
+    <div class="buttons">
+        <button onclick="goLogin()">Login</button>
+        <button onclick="goSignup()">Sign Up</button>
+    </div>
+</div>
+
+<!-- SERVICES -->
+<div class="section" id="services">
+    <h2>Our Services</h2>
+    <p>✔ Smart Parking Management</p>
+    <p>✔ Vehicle Entry & Exit Tracking</p>
+    <p>✔ QR-Based Payment Integration</p>
+    <p>✔ Data Storage & Record Management</p>
+</div>
+
+<!-- FEATURES -->
+<div class="section" id="features">
+    <h2>Key Features</h2>
+    <p>✔ Real-time parking availability</p>
+    <p>✔ Vehicle entry & exit tracking</p>
+    <p>✔ QR-based payment system</p>
+    <p>✔ Smart slot prediction</p>
+    <p>✔ Easy record management</p>
+</div>
+
+<!-- TEAM -->
+<div class="section" id="team">
+    <h2>Our Team</h2>
+    <p>👩‍💻 Purvi Jain - Frontend Developer (UI, JavaScript, AI Logic)</p>
+    <p>👨‍💻 Mahima Sharma - Backend Developer (Server, APIs, Data Handling)</p>
+</div>
+
+<!-- CAREER -->
+<div class="section" id="career">
+    <h2>Career</h2>
+    <p>We are always looking for passionate individuals.</p>
+    <p>📌 Internships available</p>
+    <p>📌 Roles: Web Developer, UI Designer</p>
+    <p>📩 Email: parkzen@gmail.com</p>
+</div>
+
+<!-- CONTACT -->
+<div class="section" id="contact">
+    <h2>Contact Us</h2>
+    <p>📧 Email: parkzen@gmail.com</p>
+    <p>📞 Phone: +91 9876543210</p>
+    <p>📍 Location: India</p>
+    <br>
+    <div class="contact-box" style="max-width:400px;">
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Your Email">
+        <textarea placeholder="Your Message"></textarea>
+        <button>Send Message</button>
+    </div>
+</div>
+
+<script>
+function goLogin() { window.location.href = "login.html"; }
+function goSignup() { window.location.href = "signup.html"; }
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+}
+</script>
+
+</body>
+</html>
